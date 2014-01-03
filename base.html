@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+
+  <head>
+    <title>{% block title %}My amazing site{% endblock %}</title>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+    <script src="/static/block.js"></script>
+    
+    <script src="/static/util.js"></script>
+    <script language="javascript">
+       document.onreadystatechange = function () {  
+            if (document.readyState == "complete") {  
+                checkCart();
+            }  
+        }
+    </script>
+  </head>
+
+  <body>
+  
+        <div id="searchForm">
+            {% block searchForm %}
+     
+            {% endblock %}
+            
+        </div>
+
+    <div id="result">
+     {% block searchresults %}
+
+     {% endblock %}
+    </div>
+    
+    <div id="cart">
+    {% block cart %}
+    
+    {% endblock %}
+    </div>
+    <div id="logo">
+    <img src="/images/PBAWS_LOGO_300px.JPG" ></img>
+    </div>
+  </body>
+
+</html>
