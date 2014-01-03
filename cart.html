@@ -1,0 +1,19 @@
+{% block cart %}
+    {% if cartContents %}
+        <form>
+
+            {% for items in cartContents %}
+                 <input type="checkbox" name="del" value={{ forloop.counter }} />Delete?   {{ items.productID }} {{ items.desc }} {{ items.qty }} {{ items.price }}
+            {% endfor %}
+
+            <input type="button" onclick="alert('Deleting...')" value="Delete">
+            <input type="button" onclick="alert('Redirecting...')" value="Checkout">
+        </form>
+    {% else %}
+        Sorry - your cart is empty.
+    {% endif %}
+</form>
+<br/>
+<br/>
+<input type="button" onclick="window.history.go(-1);" value="Return">
+{% endblock %}
