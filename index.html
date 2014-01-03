@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Search Amazon{% endblock %}
+
+{% block searchForm %}
+
+<p id='cart'>
+</p>
+
+<div id = "searchBox">
+         <form id = "searchBox" action="/search" name="searchform" onSubmit="return doSearch();">
+        Search: <input id="searchBoxField" type="text" name="keywords"  />
+        </form>
+        <br/>
+</div>
+{% endblock %}
+
