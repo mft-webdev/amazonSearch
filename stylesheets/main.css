@@ -1,0 +1,44 @@
+body {
+    width: 960px;
+	margin: 0 Auto; 
+    padding:20px;
+	}
+p {font-size: 12px;}
+
+#logo { position: relative; 
+ margin: 30px;
+ }
+
+ul
+{
+list-style-type: none;
+padding: 0px;
+margin: 0px;
+}
+li.listItem {
+    border: 2px solid transparent;
+}
+
+li.listItem:hover {
+    /* background-color: #cdcdcd !important; */
+    border:2px solid #cccccc !important;
+} 
+
+li.listItem a {
+   display:block;
+}
+
+#searchBox {
+    font-size: 29px;
+    height: 41px;
+    line-height: 33px;
+}
+
+#searchBoxField{
+    background-color: #dedede;
+    font-size: 29px;
+    height: 41px;
+    line-height: 33px;
+}
+
+#merch-form {  display: inline-block; }
