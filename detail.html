@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}
+    {% for a in productDetails %}
+            {{ a.title }}
+    {% endfor %}
+{% endblock %}
+{% block searchresults %}
+<p id='cart'>
+</p>
+<input type="button" onclick="window.history.go(-1);" value="Return">
+<br/>
+<br/>
+<b>Product Details</b><br/>
+    Merchants: <form id="merch-form" name="merchants"> 
+    <select name="merch">
+    {% for merchs in listings %}
+        <option value="{{ merchs.OfferListingId }}">{{ merchs.merchant }} {{merchs.FormattedPrice}}</option>
+    {% endfor %}
+    </select>
+    </form>
+    <input type="button" onclick="addToCart()" value="Add to Cart">
+    <br/>
+    <br/>
+    {% for a in productDetails %}
+            <strong>{{ a.title }}</strong> <br/>
+            ASIN:<em>{{ a.ASIN }}</em>
+            <br/>
+            Group:<b> {{ a.group }}</b>
+            <br/>
+             Manuf:   {{ a.manuf }} 
+            <br/>
+            Model:  {{ a.model }}
+            <br/>
+            <img src={{ a.imageLarge }}></img><br/>
+           
+            {{ a.desc }}<br/>
+            
+    {% endfor %}
+<input type="button" onclick="window.history.go(-1)" value="Return">
+{% endblock %}
+
