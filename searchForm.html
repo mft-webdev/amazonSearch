@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block searchForm %}
+<div id = "searchBox">
+         <form id = "searchBox" action="/search" name="searchform" onSubmit="return doSearch();">
+        Search: <input id="searchBox" type="text" name="keywords"  />
+        </form>
+</div>
+{% endblock %}
