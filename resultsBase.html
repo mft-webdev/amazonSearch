@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+
+  <head>
+
+    <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
+    <script src="/static/block.js"></script>
+    
+     
+    <script>
+        $(document).ajaxStop($.unblockUI); 
+        $(document).ready(function () {
+            //$.blockUI({ message: "Please Wait..." });
+        });
+      </script>
+  
+    <script type="text/javascript">
+        
+    
+        function doSearch() {
+            var fkeywords = document.searchform.elements["keywords"].value;
+            // Still need to check for success
+             
+            $.blockUI({ message: "Please Wait..." });
+            $.get("/search?keywords="+fkeywords,function(data){
+                    $("#result").html(data);  
+                });
+
+           }
+     </script>
+  </head>
+
+  <body>
+
+  
+
+ <div>
+
+ {% block form %}
+
+ {% endblock %}
+
+ </div>
+
+ {% block searchresults %}
+ <div id="result">
+
+ </div>
+ {% endblock %}
+
+  </body>
+
+</html>
