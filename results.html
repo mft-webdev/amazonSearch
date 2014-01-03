@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block searchForm %}
+    {% if cartExists %}
+    <p id='cart'>
+        <a href = "/viewcart">View Cart</a>
+    </p>
+    {% else %}
+    <p id="cart">Empty Cart</p>
+    {% endif %}
+    <form id = "searchBox" action="/search" name="searchform" onSubmit="return doSearch();">
+    Search: <input id="searchBoxField" type="text" name="keywords"  />
+    </form>
+{% endblock %}
+
+
+{% block searchresults %}
+<a href="/">Return Home</a><br/>
+Results Page: {{currPage}} <br/>
+
+    {% if prevPage %}
+        <a href="/search?keywords={{ kw }}&page={{ prevPage }}" onClick='return doSearch();'>Prev Page</a>
+    {% endif %}
+    
+<br/>
+{% if nextPage %}
+    <a href="/search?keywords={{ kw }}&page={{ nextPage }}" onClick='return doSearch();'>Next Page</a>
+{% endif %}
+<br/>
+You Searched for: {{kw}}
+    <ul>
+    {% for a in searchResults %}
+    <li class="listItem">
+        
+        
+            <strong>{{ a.title }}</strong> <br/>
+            <em><a href="/details?asin={{ a.ASIN }}">Product Details</a></em>
+
+            <br/>
+            Group:<b> {{ a.group }}</b>
+            <br/>
+             Manuf:   {{ a.manuf }}
+            <br/>
+            Model:  {{ a.model }}
+            <br/>
+            {% if a.listPrice %}
+               List Price:{{ a.listPrice }}
+            {% else %}
+                No Price Listed.
+            {% endif %}
+            <br/>
+            <a href="/details?asin={{ a.ASIN }}"><img src={{ a.imageThumb }}></img></a>
+            <br/>
+           
+        </li>
+
+    {% endfor %}
+    </ul>
+Results Page: {{currPage}} <br/>
+
+    {% if prevPage %}
+        <a href="/search?keywords={{ kw }}&page={{ prevPage }}" onClick='return doSearch();'>Prev Page</a>
+    {% endif %}
+    
+<br/>
+{% if nextPage %}
+    <a href="/search?keywords={{ kw }}&page={{ nextPage }}" onClick='return doSearch();'>Next Page</a>
+{% endif %} 
+{% endblock %}
+
