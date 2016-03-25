@@ -152,26 +152,17 @@ class Details(webapp.RequestHandler):
         productDet = []
         productDict = {}
         
-        #prodResults = [data.childNodes.item(0).data for data in results]
+        elem_types = {'Manufacturer':'manuf', 'ProductGroup':'group', 'Title':'title', 
+                    'Model':'model', 'ASIN':'ASIN','ListPrice':'listPrice'}
+        
         for items in responseXML.getElementsByTagName("Items"):
             
             for attrs in items.getElementsByTagName("Item"):
-                for manuf in attrs.getElementsByTagName("Manufacturer"):
-                    productDict["manuf"] = manuf.childNodes.item(0).data
-                    #print manuf.childNodes.item(0).data
-                    
-                for prodGroup in attrs.getElementsByTagName("ProductGroup"):
-                    productDict["group"] = prodGroup.childNodes.item(0).data
-                    
-                for title in attrs.getElementsByTagName("Title"):
-                    productDict["title"] = title.childNodes.item(0).data
                 
-                for model in attrs.getElementsByTagName("Model"):
-                    productDict["model"] = model.childNodes.item(0).data
-
-                for ASIN in attrs.getElementsByTagName("ASIN"):
-                    productDict["ASIN"] = ASIN.childNodes.item(0).data
-                
+                for elem_type, field in elem_types.iteritems():
+                    for elem in attrs.getElementsByTagName(elem_type): #TODO Change to pyparsing
+                        productDict[field] = eval('%s.childNodes.item(0).data' % (field,), {"__builtins__": {}})
+                    
                 for listPrice in attrs.getElementsByTagName("ListPrice"):
                     for formatPrice in listPrice.getElementsByTagName("FormattedPrice"):
                         productDict["listPrice"] = formatPrice.childNodes.item(0).data
@@ -191,7 +182,6 @@ class Details(webapp.RequestHandler):
                             break
                         break
                     break
-                    
                 productDet.append(productDict)
                 productDict = {}
                 
